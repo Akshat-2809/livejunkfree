@@ -7,7 +7,7 @@ import Link from "next/link";
 import type { CleanoutContent, CommercialContent, Crumb, DemolitionContent, ItemContent } from "@/content/types";
 import { Icon } from "../icons";
 import { PageShell } from "../layout/PageShell";
-import { Faq, PricingTable, Sec, SecHead, Steps } from "../sections/Blocks";
+import { Faq, PriceNote, Sec, SecHead, Steps } from "../sections/Blocks";
 import { CtaBand } from "../sections/CtaBand";
 import { LoadMeter } from "../sections/LoadMeter";
 import { Reviews } from "../sections/Reviews";
@@ -52,14 +52,22 @@ export function ItemTemplate({ c, crumbs, path, pending, name }: Base & { c: Ite
       </Sec>
       <Sec variant="white">
         <SecHead title={c.pricing.title} intro={c.pricing.intro} />
-        <PricingTable table={c.pricing.table} />
+        <div className="grid g2">
+          {c.pricing.panels.map((p) => (
+            <div key={p.title} className="panel stack">
+              <h3 className="h4">{p.title}</h3>
+              <p className="small muted">{p.text}</p>
+              <Ticks items={p.ticks} className="small" />
+            </div>
+          ))}
+        </div>
       </Sec>
       <Sec>
         <SecHead title={c.steps.title} />
         <Steps list={c.steps.list} />
       </Sec>
       <Sec variant="white">
-        <Reviews context={c.reviewsContext} />
+        <Reviews ids={c.reviews} />
       </Sec>
       <Sec>
         <Faq list={c.faq} />
@@ -114,7 +122,7 @@ export function CleanoutTemplate({ c, crumbs, path, pending, name }: Base & { c:
         <LoadMeter />
       </Sec>
       <Sec>
-        <Reviews context={c.reviewsContext} />
+        <Reviews ids={c.reviews} />
       </Sec>
       <Sec variant="white">
         <Faq list={c.faq} />
@@ -134,9 +142,6 @@ export function CommercialTemplate({ c, crumbs, path, pending, name }: Base & { 
           {c.segments.map((s) => (
             <div key={s.title} className="panel flat">
               <h2 className="h4">{s.title}</h2>
-              <p className="small muted mt-1.5">
-                <Rich text={s.text} />
-              </p>
             </div>
           ))}
         </div>
@@ -148,32 +153,20 @@ export function CommercialTemplate({ c, crumbs, path, pending, name }: Base & { 
           <Ticks items={c.schedule.ticks} />
         </div>
         <div className="panel stack">
-          <h3 className="h4">{c.scale.title}</h3>
-          <table className="tbl two-col border-0">
-            <tbody>
-              {c.scale.rows.map(([a, b]) => (
-                <tr key={a}>
-                  <td>{a}</td>
-                  <td>{b}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <p className="small muted">
-            <Rich text={c.scale.note} />
-          </p>
+          <h3 className="h4">{c.includes.title}</h3>
+          <Ticks items={c.includes.items} className="small" />
         </div>
       </Sec>
       <Sec>
         <SecHead title={c.pricing.title} intro={c.pricing.intro} />
-        <PricingTable table={c.pricing.table} />
+        <PriceNote text={c.pricing.note} />
       </Sec>
       <Sec variant="slate">
         <SecHead title={c.steps.title} />
         <Steps list={c.steps.list} />
       </Sec>
       <Sec>
-        <Reviews context={c.reviewsContext} />
+        <Reviews ids={c.reviews} />
       </Sec>
       <Sec variant="white">
         <Faq list={c.faq} />
@@ -204,14 +197,11 @@ export function DemolitionTemplate({ c, crumbs, path, pending, name }: Base & { 
               <li key={t}>{t}</li>
             ))}
           </ul>
-          <p className="small muted">
-            <Rich text={c.scope.scopeFlag} />
-          </p>
         </div>
       </Sec>
       <Sec variant="white">
         <SecHead title={c.pricing.title} intro={c.pricing.intro} />
-        <PricingTable table={c.pricing.table} />
+        <PriceNote text={c.pricing.note} />
       </Sec>
       <Sec>
         <SecHead title={c.steps.title} />

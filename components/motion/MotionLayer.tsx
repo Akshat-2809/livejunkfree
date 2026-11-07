@@ -13,9 +13,22 @@ export function MotionLayer() {
   useReveal(pathname);
 
   // Page-change fade (design: #app fadeIn) only after the first client navigation.
-  const first = useRef(pathname);
+  const prev = useRef(pathname);
+  // Back/forward navigations keep the browser's restored scroll position.
+  const popped = useRef(false);
   useEffect(() => {
-    if (pathname !== first.current) document.documentElement.classList.add("navd");
+    const onPop = () => (popped.current = true);
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
+  useEffect(() => {
+    if (pathname === prev.current) return;
+    prev.current = pathname;
+    document.documentElement.classList.add("navd");
+    // A link click opens the new page at the very top (above the review bar too),
+    // unless the link points at a section on the page (e.g. /how-it-works/#pricing).
+    if (!popped.current && !window.location.hash) window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    popped.current = false;
   }, [pathname]);
 
   useEffect(() => {

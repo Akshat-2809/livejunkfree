@@ -1,63 +1,66 @@
 import { FAQS } from "../faqs";
+import { REVIEW_SETS } from "../reviews";
 import { svc } from "../routes";
 import type { CleanoutContent } from "../types";
 
-/** Designed page: Template: Sensitive cleanout (Estate). Uses the calm variant. */
+/** Designed page: Template: Sensitive cleanout (Estate). Calm variant. Copy from livejunkfree.ca's estate cleanout page. */
 export const ESTATE: CleanoutContent = {
   calm: true,
   hero: {
     h1: "Estate cleanouts, handled with care",
-    lead: "Clearing a loved one's home is hard. We work at your pace, set aside anything you want to keep, and donate what we can.",
-    ticks: ["A walkthrough before any work starts", "Keepsakes, photos and documents set aside for you", "We can work with executors, realtors and family members out of town"],
-    image: "apt",
-    alt: "Clean, empty room after an estate cleanout",
-    primary: "Book a walkthrough",
-    cap: "Approved text-left / image-right hero",
+    lead: "Live Junk Free helps families, executors and property representatives clear unwanted furniture and household contents. You decide what stays; we remove what needs to go.",
+    ticks: [
+      "We discuss the property and quote before scheduling the cleanout",
+      "Our crew handles the lifting, carrying and loading",
+      "Arranging it from out of town? Tell us who can provide access",
+    ],
+    image: "estate",
+    alt: "Live Junk Free crew member clearing a property",
+    primary: "Request an estate quote",
   },
   includes: {
-    title: "What a cleanout includes",
-    intro: "One crew, one visit or several. Everything is cleared, sorted and the property left broom-clean and ready for sale, rent or handover.",
+    title: "What we can help remove",
+    intro: "We discuss the size of the cleanout, access requirements and the items to be removed before arranging the job.",
     panels: [
-      { icon: "key", title: "Whole-property clearing", text: "Every room, the basement, garage, attic, shed and yard." },
-      { icon: "file", title: "Personal items set aside", text: "Photos, papers, jewellery and anything you flag are boxed for you, not thrown away." },
-      { icon: "heart", leaf: true, title: "Donation first", text: "Furniture and household goods in good condition go to local charities. Receipts {tbc}" },
-      { icon: "home", title: "Broom-clean finish", text: "Floors swept and the property ready for the next step." },
+      { icon: "home", title: "Household furniture", text: "Sofas, tables, chairs, beds and other household furniture." },
+      { icon: "box", title: "Contents and clutter", text: "Boxes, books, unwanted household items and general clutter." },
+      { icon: "key", title: "Basements, garages, storage", text: "Furniture and stored contents in basements, garages and storage areas." },
+      { icon: "truck", title: "Full-property cleanouts", text: "Several rooms or a full-property cleanout that may require multiple truckloads." },
     ],
   },
   steps: {
     title: "How it works",
-    intro: "No pressure and no rush. You decide the timeline.",
     list: [
-      { title: "Talk it through", text: "Call us or send a message. Tell us about the property and what matters to you." },
-      { title: "Walkthrough and quote", text: "We visit or do a video call, note what stays, and give a written quote." },
-      { title: "Sort and clear", text: "Keepsakes set aside, donations separated, everything else removed." },
-      { title: "Handover", text: "Broom-clean property, donation receipts and photos if you're away." },
+      { title: "Call us", text: "Tell us the property city, approximate scope, items to remove and any important deadline." },
+      { title: "Review the job", text: "Share details or photos if helpful. We will confirm whether an additional assessment is needed for a quote." },
+      { title: "Agree on what goes", text: "Identify the items to retain, confirm access and review the removal scope and price." },
+      { title: "Arrange removal", text: "Our crew lifts, carries and loads the agreed unwanted items once the job details and schedule are confirmed." },
     ],
   },
   audience: {
-    title: "Who we work with",
+    title: "Who we help",
     ticks: [
-      "**Families** clearing a parent's or relative's home",
-      "**Executors and estate lawyers** who need the property ready for sale",
-      "**Realtors** preparing a listing on a deadline",
-      "**Relatives out of town**, with photo updates and key handover",
+      "**Families** clearing inherited homes, after identifying the belongings to keep",
+      "**Executors and estate representatives** who need to discuss scope, access and next steps",
+      "**Homeowners and realtors** clearing agreed rooms ahead of a listing or handover",
+      "**Relatives out of town**: tell us who can provide access and approve the removal instructions",
     ],
   },
   limits: {
     title: "What we don't do",
-    text: "We remove and sort belongings. We don't appraise antiques, run estate sales, or do biohazard or trauma cleaning. If you need those, ask and we'll point you to people we trust {tbc:confirm scope}.",
-    note: `Hoarding situations: see [hoarding cleanouts](${svc("hoarding-cleanouts-services")}) for how we handle them privately.`,
+    text: "Live Junk Free is a paid removal service. We don't buy, appraise or sell estate contents. Before removal begins, separate cash, jewellery, family photographs, documents and anything relatives want to keep, and clearly mark items that should remain in the property.",
+    note: `Hoarding situations: see [hoarding cleanouts](${svc("hoarding-cleanouts-services")}).`,
   },
   pricing: {
     title: "How estate cleanouts are priced",
-    intro: "Most estates are priced as full truckloads. Here's what each size usually covers.",
+    intro: "A full truckload is C$655, small removals start at C$125. Larger properties may take several loads.",
   },
-  reviewsContext: "estate and house cleanouts",
+  reviews: REVIEW_SETS.estate,
   faq: FAQS.estate,
   cta: {
     h: "Talk to us before you decide anything",
-    p: "A short call is often the easiest way to start. No obligation and no pressure.",
-    form: { title: "Request a walkthrough", service: "Estate or whole-house cleanout", cta: "Request a walkthrough" },
+    p: "Tell us where the property is and what needs to go. We will help you understand the next step and quote process.",
+    form: { title: "Request an estate quote", service: "Estate or whole-house cleanout", cta: "Request an estate quote" },
   },
-  mobileCta: "Book a walkthrough",
+  mobileCta: "Get an estate quote",
 };

@@ -6,7 +6,6 @@ import { HREF } from "@/content/routes";
 import { RATING, SITE } from "@/content/site";
 import { Icon } from "../icons";
 import { Stars } from "../ui/Stars";
-import { ToConfirm } from "../ui/ToConfirm";
 import { QuickQuote } from "./QuickQuote";
 import { WordReveal } from "./WordReveal";
 
@@ -17,16 +16,16 @@ export function HomeHero() {
   return (
     <section className="hero-home">
       <div className="bg">
-        <Image src={IMG[H.image]} alt={H.alt} fill sizes="100vw" quality={55} preload fetchPriority="high" />
+        <Image src={IMG[H.image]} alt={H.alt} fill sizes="100vw" quality={55} preload fetchPriority="high" className="object-[62%_40%]" />
       </div>
       <div className="wrap">
         <div className="stack-lg">
           <div className="pill-row intro" style={{ "--d": "0ms" } as React.CSSProperties}>
             <span className="gpill">
-              <Stars /> {RATING.score} {H.pills.rating} <ToConfirm />
+              <Stars /> {RATING.score} {H.pills.rating} · {RATING.count} reviews
             </span>
             <span className="gpill">
-              <Icon name="clock" /> {H.pills.sameDay} <ToConfirm />
+              <Icon name="clock" /> {H.pills.sameDay}
             </span>
           </div>
           <h1 className="d1">

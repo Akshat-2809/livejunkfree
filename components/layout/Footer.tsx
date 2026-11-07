@@ -3,7 +3,6 @@ import { FOOTER } from "@/content/nav";
 import { HREF } from "@/content/routes";
 import { HOURS, SITE, SOCIAL } from "@/content/site";
 import { Icon } from "../icons";
-import { ToConfirm } from "../ui/ToConfirm";
 
 export function Footer() {
   return (
@@ -32,13 +31,10 @@ export function Footer() {
             </Link>
             <p>{FOOTER.blurb}</p>
             <div className="hours">
-              {HOURS.rows.map((r) => (
-                <div key={r.days}>
-                  <span>{r.days}</span>
-                  <b>{r.time}</b>
-                </div>
-              ))}
-              <p className="small mt-1.5">Hours {HOURS.toConfirm ? <ToConfirm /> : null}</p>
+              <div>
+                <span>{HOURS.days}</span>
+                <b>{HOURS.time}</b>
+              </div>
             </div>
           </div>
           {FOOTER.columns.map((c) => (
@@ -65,7 +61,7 @@ export function Footer() {
             </ul>
             <div className="social mt-4">
               {SOCIAL.map((s) => (
-                <a key={s.label} href={s.href}>
+                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer">
                   <span>{s.short}</span>
                   <span className="sr-only"> ({s.label})</span>
                 </a>

@@ -14,7 +14,7 @@ export const motionAllowed = () =>
 const GROUPS: [string, "rvl" | "wipe", "index" | number][] = [
   [".sec-head,.lm,.ba,.tbl,.callout,.split>.stack:first-child,.reviews>.stack,.rv-list,.cta-band .wrap>*", "rvl", 0],
   [".route .photo", "wipe", 150],
-  [".steps>.step,.dest>div,.regions>.region,.grid>.panel,.route-mini>*,.faq>details,.az>div,.trust .t", "rvl", "index"],
+  [".steps>.step,.dest>div,.regions>.region,.grid>.panel,.route-mini>*,.faq>details,.az>div,.trust .t,.stats>div,.posts>a", "rvl", "index"],
 ];
 const SKIP = ".hero-home,.qcard,.mega,.drawer,.hero,.lp-hero";
 

@@ -112,7 +112,7 @@ export function QuoteForm({ title = QUOTE_FORM.title, service = "", commercial =
         <div className="row">
           <div className="field">
             <label htmlFor={f("postal")}>{L.postal}</label>
-            <input ref={postal} id={f("postal")} name="postal" autoComplete="postal-code" placeholder={L.postalPlaceholder} />
+            <input ref={postal} id={f("postal")} name="postal" autoComplete="postal-code" placeholder={L.postalHint} />
           </div>
           <div className="field">
             <label htmlFor={f("day")}>
@@ -135,7 +135,7 @@ export function QuoteForm({ title = QUOTE_FORM.title, service = "", commercial =
           <label htmlFor={f("details")}>
             {L.details} <i>{L.optional}</i>
           </label>
-          <textarea ref={details} id={f("details")} name="details" placeholder={L.detailsPlaceholder} />
+          <textarea ref={details} id={f("details")} name="details" placeholder={L.detailsHint} />
         </div>
         {compact ? null : (
           <label className="upload" htmlFor={f("photos")}>

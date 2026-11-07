@@ -1,13 +1,12 @@
 /**
  * Content types shared by every page. Shaped so a headless CMS can supply the
- * same objects later. Strings support <Rich> markup:
- *   {tbc}  {tbc:label}  **bold**  [link text](/path/)
+ * same objects later. Strings support <Rich> markup: **bold**, [link text](/path/).
  */
 import type { IconName } from "@/components/icons";
 import type { FaqList } from "./faqs";
 import type { ImageKey } from "./images";
 import type { Link } from "./nav";
-import type { PriceTable } from "./pricing";
+import type { ReviewId } from "./reviews";
 
 export type Crumb = { label: string; href?: string };
 export type Step = { title: string; text: string };
@@ -33,10 +32,11 @@ export type HeroContent = {
   primary?: string;
   secondary?: boolean;
   /** Price callout under the rating (item template). */
-  callout?: { title: string; flag: string; note: string };
+  callout?: { title: string; note: string };
 };
 
 export type PanelContent = { icon?: IconName; leaf?: boolean; title: string; text: string };
+export type PricePanel = { title: string; text: string; ticks: string[] };
 
 export type RelatedGroup = { title: string; links: Link[] };
 
@@ -45,9 +45,9 @@ export type ItemContent = {
   hero: HeroContent;
   take: { title: string; intro: string; ticks: string[]; note?: string };
   panels: PanelContent[];
-  pricing: { title: string; intro: string; table: PriceTable };
+  pricing: { title: string; intro: string; panels: PricePanel[] };
   steps: { title: string; list: Step[] };
-  reviewsContext: string;
+  reviews: ReviewId[];
   faq: FaqList;
   related: RelatedGroup[];
   cta: CtaContent;
@@ -59,11 +59,11 @@ export type CleanoutContent = {
   calm: boolean;
   hero: HeroContent;
   includes: { title: string; intro: string; panels: PanelContent[] };
-  steps: { title: string; intro: string; list: Step[] };
+  steps: { title: string; intro?: string; list: Step[] };
   audience: { title: string; ticks: string[] };
   limits: { title: string; text: string; note: string };
   pricing: { title: string; intro: string };
-  reviewsContext: string;
+  reviews: ReviewId[];
   faq: FaqList;
   cta: CtaContent;
   mobileCta?: string;
@@ -72,12 +72,12 @@ export type CleanoutContent = {
 /** Template: Commercial (Office). */
 export type CommercialContent = {
   hero: HeroContent;
-  segments: { title: string; text: string }[];
+  segments: { title: string }[];
   schedule: { title: string; intro: string; ticks: string[] };
-  scale: { title: string; rows: [string, string][]; note: string };
-  pricing: { title: string; intro: string; table: PriceTable };
+  includes: { title: string; items: string[] };
+  pricing: { title: string; intro: string; note: string };
   steps: { title: string; list: Step[] };
-  reviewsContext: string;
+  reviews: ReviewId[];
   faq: FaqList;
   cta: CtaContent;
   mobileCta?: string;
@@ -86,8 +86,8 @@ export type CommercialContent = {
 /** Template: Demolition (Deck). */
 export type DemolitionContent = {
   hero: HeroContent;
-  scope: { included: string[]; before: string[]; excluded: string[]; scopeFlag: string };
-  pricing: { title: string; intro: string; table: PriceTable };
+  scope: { included: string[]; before: string[]; excluded: string[] };
+  pricing: { title: string; intro: string; note: string };
   steps: { title: string; list: Step[] };
   other: { title: string; items: { label: string; href: string; icon: IconName }[] };
   faq: FaqList;
@@ -98,9 +98,9 @@ export type DemolitionContent = {
 export type LocationContent = {
   hero: HeroContent;
   local: { title: string; intro: string; panels: { title: string; text: string }[] };
-  neighbourhoods: { title: string; list: string[]; flag: string };
+  neighbourhoods: { title: string; list: string[] };
   popular: { title: string; items: { label: string; href: string; icon: IconName }[] };
-  reviewsContext: string;
+  reviews: ReviewId[];
   faq: FaqList;
   nearby: RelatedGroup;
   cta: CtaContent;

@@ -67,8 +67,9 @@ export const DESIGNED_PAGES = [
 
 /* ---------- every route on the site ---------- */
 
-export type RouteStatus = "designed" | "pending";
-export type RouteGroup = "Designed pages" | "Service categories" | "Residential" | "Commercial" | "Cleanouts" | "Demolition" | "Locations" | "Placeholder pages";
+/** designed = one of the 12 approved pages; content = real site content in the new layout; pending = template preview. */
+export type RouteStatus = "designed" | "content" | "pending";
+export type RouteGroup = "Designed pages" | "Service categories" | "Residential" | "Commercial" | "Cleanouts" | "Demolition" | "Locations" | "Other pages";
 export type RouteEntry = { href: string; label: string; status: RouteStatus; group: RouteGroup; index: boolean };
 
 const designedHrefs = new Set<string>(DESIGNED_PAGES.map((p) => p.href));
@@ -104,10 +105,10 @@ export const ROUTES: RouteEntry[] = [
     index: true,
   })),
   ...[
-    { href: HREF.about, label: "About us" },
-    { href: HREF.blog, label: "Blog" },
-    { href: HREF.privacy, label: "Privacy policy" },
-  ].map((p) => ({ ...p, status: "pending" as const, group: "Placeholder pages" as const, index: true })),
+    { href: HREF.about, label: "About us", status: "content" as const },
+    { href: HREF.blog, label: "Blog", status: "content" as const },
+    { href: HREF.privacy, label: "Privacy policy", status: "pending" as const },
+  ].map((p) => ({ ...p, group: "Other pages" as const, index: true })),
 ];
 
 export const ROUTE_HREFS = new Set(ROUTES.map((r) => r.href));

@@ -27,8 +27,8 @@ export function QuickQuote() {
           router.push(HREF.contact);
         }}
       >
-        <input name="item" aria-label={Q.itemLabel} placeholder={Q.itemPlaceholder} />
-        <input name="postal" aria-label={Q.postalLabel} placeholder={Q.postalPlaceholder} autoComplete="postal-code" />
+        <input name="item" aria-label={Q.itemLabel} placeholder={Q.itemHint} />
+        <input name="postal" aria-label={Q.postalLabel} placeholder={Q.postalHint} autoComplete="postal-code" />
         <button className="btn btn-primary" type="submit">
           {Q.cta}
         </button>

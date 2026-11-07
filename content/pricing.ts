@@ -1,72 +1,58 @@
 /**
- * Pricing data. Every price is a placeholder ($XX / $XXX) until the client
- * approves real numbers. Keep the {tbc} flags next to each one.
- *
- * Text fields support the content markup rendered by <Rich>:
- *   {tbc}  {tbc:label}  **bold**  [link text](/path/)
+ * Pricing. Only two figures are published on livejunkfree.ca:
+ *   - small or single-item removals start at C$125
+ *   - a full truckload is C$655
+ * Everything else is volume-based and confirmed with a free on-site estimate.
  */
 
-export type Load = { k: string; eq: string; price: string; items: string[]; fill: number };
+export const PRICES = {
+  from: "C$125",
+  fromLabel: "Small or single-item removals",
+  full: "C$655",
+  fullLabel: "Full truckload",
+} as const;
 
-/** Truck load sizes for the LoadMeter. `fill` = how many of the 8 truck cells light up. */
+/** Truck load sizes for the LoadMeter: what usually fits. `fill` = lit truck cells (of 8). */
+export type Load = { k: string; eq: string; items: string[]; fill: number };
+
 export const LOADS: Load[] = [
-  { k: "1/8", eq: "About one pickup-truck bed", price: "$XXX", items: ["A couch", "A mattress + box spring", "A few boxes"], fill: 1 },
-  { k: "1/4", eq: "A small room or a garage corner", price: "$XXX", items: ["Bedroom set", "Washer + dryer", "Patio set"], fill: 2 },
-  { k: "1/2", eq: "A one-bedroom apartment", price: "$XXX", items: ["Living room furniture", "Basement storage", "Hot tub (cut down)"], fill: 4 },
-  { k: "3/4", eq: "A full garage or large basement", price: "$XXX", items: ["Garage cleanout", "Renovation debris", "Office move-out"], fill: 6 },
-  { k: "Full", eq: "A small house cleanout", price: "$XXX", items: ["Estate cleanout", "Whole-house declutter", "Small shed teardown"], fill: 8 },
+  { k: "1/8", eq: "About one pickup-truck bed", items: ["A couch", "A mattress + box spring", "A few boxes"], fill: 1 },
+  { k: "1/4", eq: "A small room or a garage corner", items: ["Bedroom set", "Washer + dryer", "Patio set"], fill: 2 },
+  { k: "1/2", eq: "A one-bedroom apartment", items: ["Living room furniture", "Basement storage", "Hot tub (cut down)"], fill: 4 },
+  { k: "3/4", eq: "A full garage or large basement", items: ["Garage cleanout", "Renovation debris", "Office move-out"], fill: 6 },
+  { k: "Full", eq: "A small house cleanout", items: ["Estate cleanout", "Whole-house declutter", "Small shed teardown"], fill: 8 },
 ];
 
-/** Load size selected on first render. */
 export const DEFAULT_LOAD = 1;
 
 export const LOAD_METER = {
   tag: "Load size",
-  priceNote: "starting price",
-  priceFlag: "approved prices",
+  fitsLabel: "What usually fits",
   footnote:
-    "You pay for the space your items take in our truck. Labour, loading and disposal are included. Heavy materials like concrete, soil and shingles are priced by weight {tbc}.",
+    "You pay for the space your items fill in our truck, with a free on-site estimate and no hidden fees. The price you approve is the price you pay.",
   cta: "Get my exact price",
   secondary: "How pricing works",
 };
 
-export type PriceTable = { head: [string, string, string]; rows: [string, string, string][] };
+/** Pricing sentences used on individual pages (all from livejunkfree.ca). */
+export const PRICE_NOTES = {
+  howItWorks:
+    "Small or single-item removals start at C$125. A full truckload is C$655. Final price depends on volume, item type and access, confirmed with a free on-site estimate.",
+  estate: "A full truckload is C$655, small removals start at C$125. Larger properties may take several loads.",
+  commercial: "Clear quotes starting at C$125, with volume discounts for multi-site cleanouts.",
+  deck: "Our services start at C$125, with final pricing based on size, materials, and complexity. We provide free, no-obligation estimates.",
+} as const;
 
-export const PRICE_TABLES = {
-  couch: {
-    head: ["Job", "What's included", "From"],
-    rows: [
-      ["Loveseat or armchair", "Removal from any floor, loading, disposal", "$XX {tbc}"],
-      ["3-seat sofa", "Removal from any floor, loading, disposal", "$XX {tbc}"],
-      ["Sectional (2–4 pieces)", "Disassembly if needed, removal, disposal", "$XXX {tbc}"],
-      ["Couch + mattress + boxes", "Priced by truck space as one load", "$XXX {tbc}"],
-    ],
+/** Couch page pricing panels (livejunkfree.ca couch removal page). */
+export const COUCH_PRICING = [
+  {
+    title: "Single item removal starting at C$125",
+    text: "One couch, one pickup, all cleanup included. Perfect for a single sofa, loveseat, or recliner.",
+    ticks: ["Disassembly if required", "Floor & wall protection", "Post-removal area cleanup", "Eco-responsible disposal"],
   },
-  commercial: {
-    head: ["Job", "How it's priced", "From"],
-    rows: [
-      ["A few desks or chairs", "Truckload pricing", "$XXX {tbc}"],
-      ["Small office clear-out", "Truckload pricing, after-hours option", "$XXX {tbc}"],
-      ["Floor, warehouse or retail clear-out", "Fixed project quote after site visit", "Quoted"],
-    ],
+  {
+    title: "Save more by choosing a multi-item bundle",
+    text: "Removing a couch and a few other items? Bundle them together for a better rate on the whole job.",
+    ticks: ["Couches + any other furniture", "Appliances included", "Mattresses & bed frames", "All cleanup & disposal included"],
   },
-  demolition: {
-    head: ["Factor", "Why it matters", "Example"],
-    rows: [
-      ["Size", "More material, more truck space", "Small deck from $XXX {tbc}"],
-      ["Height and levels", "Raised and multi-level decks take longer", "Quoted on site"],
-      ["Footings", "Concrete is heavy and priced by weight", "Quoted on site"],
-      ["Access", "Backyard-only access means more carrying", "Quoted on site"],
-    ],
-  },
-  examples: {
-    head: ["Job", "Typical load", "From"],
-    rows: [
-      ["Single mattress", "Minimum load", "$XX {tbc}"],
-      ["Fridge or freezer", "Minimum load + appliance fee", "$XX {tbc}"],
-      ["One-room cleanout", "1/4 truck", "$XXX {tbc}"],
-      ["Garage cleanout", "1/2 to 3/4 truck", "$XXX {tbc}"],
-      ["Hot tub removal", "Cut down + haul", "$XXX {tbc}"],
-    ],
-  },
-} satisfies Record<string, PriceTable>;
+];

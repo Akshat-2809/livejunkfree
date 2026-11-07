@@ -33,7 +33,6 @@ export function HubTemplate({ crumbs, path, h1, lead, categories, pending }: Pro
       <Sec variant="white">
         <SecHead title={SERVICES_HUB.az.title} intro={SERVICES_HUB.az.intro} />
         <ServicesAz categories={categories} />
-        {all ? <p className="small muted mt-6">{SERVICES_HUB.az.note}</p> : null}
       </Sec>
       <Sec>
         <SecHead title={SERVICES_HUB.pricingTitle} />

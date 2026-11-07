@@ -87,14 +87,14 @@ test("review bar page switcher navigates to all 12 pages", async ({ page }) => {
   }
 });
 
-test("'Show items to confirm' hides every badge and persists", async ({ page }) => {
-  await page.goto("/");
-  await expect(page.locator(".tbc").first()).toBeVisible();
-  await page.getByLabel("Show items to confirm").uncheck();
-  await expect(page.locator("body")).toHaveClass(/hide-tbc/);
-  await expect(page.locator(".tbc").first()).toBeHidden();
-  await page.reload();
-  await expect(page.locator("body")).toHaveClass(/hide-tbc/);
+test("no stand-in or unconfirmed content on any page", async ({ request }) => {
+  const banned = [/to confirm/i, /confirm scope/i, /XXX/, /XX%/, /\$XX/, /placeholder:/i, /Customer name/, /\bsample\b/i, /replace with/i, /stock photo/i, /unsplash/i, /\b4\.9\b/, /within the hour/i, /before noon/i, /href="#"/];
+  const hits: string[] = [];
+  for (const r of ROUTES) {
+    const html = (await (await request.get(r.href)).text()).replace(/<script[\s\S]*?<\/script>/g, "");
+    for (const re of banned) if (re.test(html)) hits.push(`${r.href}: ${re}`);
+  }
+  expect(hits).toEqual([]);
 });
 
 test.describe("reduced motion", () => {
@@ -168,7 +168,8 @@ test("load meter switches load size", async ({ page }) => {
   await lm.getByRole("button", { name: /^Full/ }).click();
   await expect(lm.getByRole("button", { name: /^Full/ })).toHaveAttribute("aria-pressed", "true");
   await expect(lm.locator(".cell.on")).toHaveCount(8);
-  await expect(lm.locator(".eq")).toContainText("A small house cleanout");
+  await expect(lm.locator(".eq-big")).toContainText("A small house cleanout");
+  await expect(lm.locator(".lm-prices .on")).toContainText("C$655");
 });
 
 test("landing pages have no main nav and are noindex", async ({ page }) => {

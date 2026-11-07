@@ -64,8 +64,8 @@ export function BeforeAfter({ before, after, cap }: { before: ImageKey; after: I
   return (
     <>
       <div className="ba" ref={box}>
-        <Image src={IMG[before]} alt="Before: cluttered space" fill sizes="(max-width: 1280px) 100vw, 1200px" />
-        <Image className="after" src={IMG[after]} alt="After: cleared space" fill sizes="(max-width: 1280px) 100vw, 1200px" />
+        <Image src={IMG[before]} alt="Before: old deck in the backyard" fill sizes="(max-width: 1280px) 100vw, 1200px" />
+        <Image className="after" src={IMG[after]} alt="After: deck removed and yard cleared" fill sizes="(max-width: 1280px) 100vw, 1200px" />
         <span className="t l">Before</span>
         <span className="t r">After</span>
         <div className="knob">

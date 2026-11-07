@@ -1,35 +1,35 @@
 import { FAQS } from "../faqs";
-import { PRICE_TABLES } from "../pricing";
+import { PRICE_NOTES } from "../pricing";
 import { svc } from "../routes";
 import type { DemolitionContent } from "../types";
 
-/** Designed page: Template: Demolition (Deck). */
+/** Designed page: Template: Demolition (Deck). Copy from livejunkfree.ca's deck demolition page. */
 export const DECK: DemolitionContent = {
   hero: {
     h1: "Deck removal and demolition",
-    lead: "We take down old wood and composite decks, haul away every board and leave the area raked and ready for what comes next.",
-    ticks: ["Teardown, haul-away and clean-up in one price", "Wood recycled where accepted", "Free on-site estimate for larger decks"],
-    image: "demo",
-    alt: "Deck demolition",
+    lead: "We specialize in making old decks disappear quickly, safely, and affordably, and we handle every step from the first loose board to the final sweep of your clean, open yard.",
+    ticks: ["Same-day and next-day deck removal", "Wood, composite, and metal sorted for recycling", "Free, no-obligation estimates"],
+    image: "deckAfter",
+    alt: "Backyard after a Live Junk Free deck removal",
     primary: "Get a demolition quote",
   },
   scope: {
-    included: ["Boards, railings, stairs and framing", "Footings and posts {tbc}", "All debris loaded and hauled", "Nails and screws swept up"],
+    included: ["Boards, railings, stairs and framing", "All debris loaded and hauled", "Nails and screws swept up", "Eco-friendly disposal for all materials"],
     before: ["Clear furniture and planters", "Turn off and disconnect any lighting or hot tub power", "Tell us about gas lines or anything under the deck"],
-    excluded: ["Permits, if your city requires them", "Electrical disconnection by a licensed electrician", "Rebuilding or landscaping"],
-    scopeFlag: "Scope {tbc}",
+    excluded: ["Electrical disconnection by a licensed electrician", "Rebuilding or landscaping"],
   },
   pricing: {
     title: "What affects the price",
-    intro: "Demolition is quoted per job. These are the main factors.",
-    table: PRICE_TABLES.demolition,
+    intro: "You only pay for what we remove.",
+    note: PRICE_NOTES.deck,
   },
   steps: {
     title: "How deck removal works",
     list: [
-      { title: "Photos or site visit", text: "Send photos and rough measurements, or we visit for larger decks." },
-      { title: "Fixed quote", text: "You get a firm price and a date. No deposit for small jobs." },
-      { title: "Teardown and haul", text: "Usually done in a day, area raked and swept." },
+      { title: "Send us photos", text: "Take a few pictures of your deck and text or upload them to us for a free, no-obligation quote." },
+      { title: "Get your quote", text: "Straightforward pricing with no hidden fees, based on your deck's size, materials, and condition." },
+      { title: "Pick your time", text: "Select same-day service, next-day availability, or schedule a future date that works for you." },
+      { title: "We remove it", text: "Our crew arrives on time, safely demolishes your deck, removes all debris, and leaves your yard clean." },
     ],
   },
   other: {

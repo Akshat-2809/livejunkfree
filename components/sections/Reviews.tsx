@@ -1,47 +1,43 @@
-import { REVIEWS_HEADING, REVIEW_LINK_LABEL, REVIEW_SAMPLE_FLAG, REVIEW_SCORE_FLAG, SAMPLE_REVIEWS } from "@/content/reviews";
+import { REVIEWS, REVIEWS_HEADING, REVIEW_LINK_LABEL, REVIEW_SETS, REVIEW_SOURCE_LABEL, type ReviewId } from "@/content/reviews";
 import { GOOGLE_REVIEWS_URL, RATING } from "@/content/site";
 import { Stars } from "../ui/Stars";
-import { ToConfirm } from "../ui/ToConfirm";
 import { ScoreCountUp } from "./ScoreCountUp";
 
-/**
- * Reviews block. Sample reviews only — wire to the live Google reviews widget
- * before launch. Cards scroll horizontally on mobile.
- */
-export function Reviews({ context = "jobs across the GTA" }: { context?: string }) {
+/** Real Google reviews block. Cards scroll horizontally on mobile. */
+export function Reviews({ ids = REVIEW_SETS.home }: { ids?: ReviewId[] }) {
   return (
     <div className="reviews">
       <div className="stack">
         <h2 className="d2">{REVIEWS_HEADING}</h2>
         <div>
-          <ScoreCountUp value={RATING.score} /> <ToConfirm label={REVIEW_SCORE_FLAG} />
+          <ScoreCountUp value={RATING.score} />
         </div>
         <Stars />
         <p className="muted">
-          Based on <b>{RATING.count}</b> Google reviews for {context}.
+          {RATING.score} from <b>{RATING.count}</b> Google reviews.
         </p>
-        <a className="tlink self-start" href={GOOGLE_REVIEWS_URL}>
+        <a className="tlink self-start" href={GOOGLE_REVIEWS_URL} target="_blank" rel="noopener noreferrer">
           {REVIEW_LINK_LABEL}
         </a>
       </div>
       <div className="rv-list" role="region" tabIndex={0} aria-label="Customer reviews">
-        {SAMPLE_REVIEWS.map((r) => (
-          <figure key={r.service} className="rv">
-            <Stars />
-            <blockquote>
-              <q>{r.text}</q>
-            </blockquote>
-            <figcaption className="who">
-              <div>
-                <b>Customer name</b>
-                {r.service}
-              </div>
-            </figcaption>
-            <span className="tbc self-start ml-0!" title="Needs client approval before launch">
-              {REVIEW_SAMPLE_FLAG}
-            </span>
-          </figure>
-        ))}
+        {ids.map((id) => {
+          const r = REVIEWS[id];
+          return (
+            <figure key={id} className="rv">
+              <Stars />
+              <blockquote>
+                <q>{r.text}</q>
+              </blockquote>
+              <figcaption className="who">
+                <div>
+                  <b>{r.name}</b>
+                  {REVIEW_SOURCE_LABEL}
+                </div>
+              </figcaption>
+            </figure>
+          );
+        })}
       </div>
     </div>
   );

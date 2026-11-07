@@ -1,5 +1,5 @@
 import { PageShell } from "@/components/layout/PageShell";
-import { Faq, PricingTable, Sec, SecHead, Steps } from "@/components/sections/Blocks";
+import { Faq, PriceNote, Sec, SecHead, Steps } from "@/components/sections/Blocks";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { LoadMeter } from "@/components/sections/LoadMeter";
 import { PageHero } from "@/components/sections/ServiceHero";
@@ -20,15 +20,15 @@ export default function HowItWorksPage() {
       </Sec>
       <Sec variant="white">
         <SecHead title={P.factors.title} />
-        <div className="grid g4">
+        <div className="grid g3">
           {P.factors.items.map((f) => (
             <Panel key={f.title} variant="flat" {...f} />
           ))}
         </div>
       </Sec>
       <Sec>
-        <SecHead title={P.examples.title} intro={P.examples.intro} />
-        <PricingTable table={P.examples.table} />
+        <SecHead title={P.examples.title} />
+        <PriceNote text={P.examples.text} />
       </Sec>
       <Sec variant="slate" id="how" className="scroll-mt-24">
         <SecHead title={P.steps.title} />

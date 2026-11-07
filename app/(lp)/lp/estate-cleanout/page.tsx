@@ -41,7 +41,7 @@ export default function LpEstatePage() {
         <Steps list={P.steps} />
       </Sec>
       <Sec variant="white">
-        <Reviews context={P.reviewsContext} />
+        <Reviews ids={P.reviews} />
       </Sec>
       <Sec>
         <Faq list={P.faq} />

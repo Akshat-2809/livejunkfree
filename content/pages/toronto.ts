@@ -1,31 +1,40 @@
 import { FAQS } from "../faqs";
 import { TOP_AREAS } from "../locations";
 import { cityLinks } from "../nav";
+import { REVIEW_SETS } from "../reviews";
 import { HREF, svc } from "../routes";
 import type { LocationContent } from "../types";
 
-/** Designed page: Template: Location (Toronto). */
+/** Designed page: Template: Location (Toronto). Copy from livejunkfree.ca/locations/toronto/. */
 export const TORONTO: LocationContent = {
   hero: {
     h1: "Junk removal in Toronto",
-    lead: "From downtown condos to semis with laneway garages, we clear out homes and businesses across the city.",
-    ticks: ["Condo-ready: elevator bookings and loading docks", "Laneway and street-parking pickups", "Same or next day when available {tbc}"],
-    image: "crew",
-    alt: "Live Junk Free truck in Toronto",
+    lead: "From downtown condos on King Street to detached homes in Willowdale, we come to your Toronto property, assess everything in person and hand you a free on-site estimate before touching a single item.",
+    ticks: ["Same-day junk removal, 7 days a week, 6AM to 11PM", "Condo-ready: elevator booking and loading docks", "Free on-site estimate before any work begins"],
+    image: "crewAbout",
+    alt: "Live Junk Free crew loading the truck in Toronto",
   },
   local: {
     title: "Getting junk out of Toronto homes",
-    intro: "Toronto pickups come with their own problems. Here's how we handle the common ones.",
+    intro: "Volume-based pricing — the only fair way to charge in a city this diverse.",
     panels: [
-      { title: "Condo towers", text: "Book the service elevator and tell us the move-in/move-out window. We bring blankets for the elevator and use the loading dock." },
-      { title: "Semis and row houses", text: "Narrow staircases and front-hall turns are normal for us. We'll take apart furniture if we have to." },
-      { title: "Laneways and parking", text: "We can load from the laneway or street. Let us know if there's a permit-parking zone." },
+      {
+        title: "Condo towers",
+        text: "For condo and high-rise buildings across downtown Toronto, Midtown, North York and beyond — elevator booking and building coordination is included in your quote.",
+      },
+      {
+        title: "Priced by volume",
+        text: "Whether you're in a 500 sq ft downtown condo or a 4,000 sq ft detached home in North York — you pay based on how much space your junk fills in our truck. Not by the hour.",
+      },
+      {
+        title: "No Toronto premiums",
+        text: "A job in the Financial District is priced the same way as a job in Scarborough — by volume. Your address in this city is never used to inflate your bill.",
+      },
     ],
   },
   neighbourhoods: {
     title: "Neighbourhoods we serve",
-    list: ["Downtown", "The Annex", "Leslieville", "Liberty Village", "High Park", "The Junction", "Danforth", "Yorkville", "North York", "East York", "Midtown", "Roncesvalles"],
-    flag: "Neighbourhood list {tbc}",
+    list: ["Downtown", "Midtown", "West End", "East End", "North York", "York", "East York", "Etobicoke", "Scarborough", "Willowdale", "King West"],
   },
   popular: {
     title: "Popular services in Toronto",
@@ -36,7 +45,7 @@ export const TORONTO: LocationContent = {
       { label: "Office cleanouts", href: HREF.office, icon: "file" },
     ],
   },
-  reviewsContext: "Toronto customers",
+  reviews: REVIEW_SETS.toronto,
   faq: FAQS.toronto,
   nearby: {
     title: "Nearby areas",

@@ -19,6 +19,8 @@ npm run lint
 npm run typecheck
 npm run test:install     # once: downloads Chromium for Playwright
 npm run build && npm test
+# or use an installed browser instead of the download:
+PW_BROWSER="/Applications/Brave Browser.app/Contents/MacOS/Brave Browser" npm test
 npm run visual           # design vs build screenshots, side by side, in test-results/visual/
 ```
 
@@ -26,7 +28,7 @@ npm run visual           # design vs build screenshots, side by side, in test-re
 
 Review mode is controlled by `NEXT_PUBLIC_REVIEW_MODE` in `.env`. It is `true` for the client preview, and while it's on:
 
-- the dark review toolbar appears at the top of every page: a page switcher, the "Show items to confirm" toggle and the "All pages & links" button
+- the dark review toolbar appears at the top of every page: a page switcher and the "All pages & links" button
 - `/review/` lists all 12 designed pages and every generated route, with a status label for each
 - every page is `noindex`, and `robots.txt` disallows everything
 
@@ -38,27 +40,22 @@ All copy and data live in typed files in `content/`. Nothing is hard-coded in JS
 
 | What | File |
 |---|---|
-| Phone, email, rating, social links | `content/site.ts` |
-| Hours | `content/site.ts` (`HOURS`) |
-| Prices: load sizes and the example price tables | `content/pricing.ts` |
+| Phone, email, hours, rating, counters, social links, map embed | `content/site.ts` |
+| Prices (C$125 / C$655) and load sizes | `content/pricing.ts` |
 | Service areas: the top 10, regions and slugs | `content/locations.ts` |
 | Services, categories and URL slugs | `content/services.ts` |
 | Every URL / route map | `content/routes.ts` |
 | Menus and footer links | `content/nav.ts` |
 | FAQs | `content/faqs.ts` |
-| Reviews (samples) | `content/reviews.ts` |
-| Photos | `content/images.ts` |
+| Real Google reviews, and which page shows which | `content/reviews.ts` |
+| Photos (files in `public/images/`) | `content/images.ts` |
 | Page copy | `content/pages/*.ts` |
 | Copy for template-preview pages | `content/templates.ts` |
 | Shared copy: steps, trust strip, quote form | `content/shared.ts` |
 
-Copy strings support a small markup:
+All content comes from livejunkfree.ca (checked 7 Nov 2026): prices, hours, rating, reviews, FAQs, photos and About copy. Nothing is invented, and there are no "to confirm" badges or placeholder values left. A test (`no stand-in or unconfirmed content`) fails if any come back.
 
-- `{tbc}` or `{tbc:label}` adds the dashed "to confirm" badge
-- `**bold**`
-- `[link text](/path/)`
-
-**Removing a `{tbc}` flag means the claim is approved.** Only remove one once the client has confirmed it. Prices stay `$XX` / `$XXX` until real numbers are approved.
+Copy strings support a small markup: `**bold**` and `[link text](/path/)`.
 
 Design tokens (colours, radii, max width) are in `app/globals.css` under `@theme`. They are available as Tailwind utilities (`bg-orange`, `text-ink`, `rounded-xl`, `max-w-content`). The design's component CSS is ported almost verbatim below the tokens, using the same class names as the design file.
 
@@ -80,7 +77,6 @@ Design tokens (colours, radii, max width) are in `app/globals.css` under `@theme
 - **Every link goes to its real page.** In the prototype, many links (mega-menu items, area chips, A–Z items) pointed at one of the 4 demo templates. Here each one goes to its own route.
 - **Under reduced motion, the load-meter tabs stay on one row.** In the design file, "Full" wraps to a second row in that mode.
 - **The office page's "Typical project scale" table keeps both columns on mobile.** The design's mobile rule hid the second column, which held the timing information.
-- **The "Show items to confirm" choice is remembered.** It is saved in `localStorage`.
 - **Clicking "Services" no longer closes the mega menu.** In the design, hovering opened it and the click then toggled it shut again.
 - **The 360 px landing-page header no longer overflows.** It is slightly tighter at that width.
 - **Some animations run on desktop only, or only between pages.** These changes keep the Lighthouse scores on target:
@@ -89,15 +85,13 @@ Design tokens (colours, radii, max width) are in `app/globals.css` under `@theme
 
 ## Pre-launch checklist
 
-- [ ] Swap the stock photos (`content/images.ts`) for real LJF job and before/after photos.
-- [ ] Fill in the confirmed prices, rating, review count, hours and other `{tbc}` items, then remove their flags.
-- [ ] Replace the sample reviews with real Google reviews or the live widget, and set `GOOGLE_REVIEWS_URL`.
-- [ ] Connect the quote form to email or CRM (`app/actions/quote.ts`, see its TODO), store uploaded photos and add spam protection.
-- [ ] Add the real social links (`content/site.ts`) and the Google Maps embed (contact page).
+- [ ] Connect the quote form to email or CRM (`app/actions/quote.ts`, see its TODO) and add spam protection.
+- [ ] Write the privacy policy. The live one is unedited WordPress default text, so `/privacy-policy/` is still pending.
 - [ ] Write the content for the template-preview pages, which are listed at `/review/` as "Template preview".
+- [ ] Migrate the blog posts. `/blog/` currently lists the latest posts and links to them on the current site.
 - [ ] Port GA4, Google Ads conversion tracking and Google Tag Manager.
 - [ ] Add 301 redirects (`redirects()` in `next.config.ts`) for any URL that changes.
-- [ ] Keep the existing Google Ads landing pages live during the switch, and point campaigns at `/lp/...` only once they are approved.
+- [ ] Keep the existing Google Ads landing pages live during the switch.
 - [ ] Connect a CMS. The `content/*.ts` types are the schema to mirror.
 - [ ] Set `NEXT_PUBLIC_REVIEW_MODE=false` and rebuild.
 

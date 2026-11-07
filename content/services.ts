@@ -31,7 +31,7 @@ export const CATEGORIES: Record<CategoryKey, Category> = {
     template: "item",
     h1: "Residential junk removal",
     lead: "Single items to full rooms. Furniture, appliances, mattresses, hot tubs and household junk, taken from anywhere in your home.",
-    card: { title: "Homeowners & renters", text: "Single items to full rooms", icon: "home", image: "res" },
+    card: { title: "Homeowners & renters", text: "Single items to full rooms", icon: "home", image: "couch" },
   },
   commercial: {
     key: "commercial",
@@ -40,7 +40,7 @@ export const CATEGORIES: Record<CategoryKey, Category> = {
     template: "commercial",
     h1: "Commercial junk removal",
     lead: "Offices, warehouses, retail and property portfolios. Scheduled around your business hours.",
-    card: { title: "Businesses, contractors & property managers", text: "Offices, reno debris, warehouses, units", icon: "building", image: "com" },
+    card: { title: "Businesses, contractors & property managers", text: "Offices, reno debris, warehouses, units", icon: "building", image: "business" },
   },
   cleanouts: {
     key: "cleanouts",
@@ -49,7 +49,7 @@ export const CATEGORIES: Record<CategoryKey, Category> = {
     template: "cleanout",
     h1: "Junk cleanouts",
     lead: "Estates, houses, basements, garages and storage units, cleared and left broom-clean.",
-    card: { title: "Families & executors", text: "Estate, house and hoarding cleanouts", icon: "heart", image: "clean" },
+    card: { title: "Families & executors", text: "Estate, house and hoarding cleanouts", icon: "heart", image: "estate" },
   },
   demolition: {
     key: "demolition",
@@ -58,7 +58,7 @@ export const CATEGORIES: Record<CategoryKey, Category> = {
     template: "demolition",
     h1: "Junk demolition",
     lead: "Decks, sheds, fences, hot tubs and playsets, torn down and hauled away the same day.",
-    card: { title: "Demolition", text: "Decks, sheds, fences, hot tubs", icon: "hammer", image: "demo" },
+    card: { title: "Demolition", text: "Decks, sheds, fences, hot tubs", icon: "hammer", image: "deckAfter" },
   },
 };
 

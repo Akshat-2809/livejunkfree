@@ -1,10 +1,9 @@
 import { PageShell } from "@/components/layout/PageShell";
-import { MapPlaceholder } from "@/components/sections/Areas";
+import { MapEmbed } from "@/components/sections/Areas";
 import { QuoteForm } from "@/components/sections/QuoteForm";
 import { WordReveal } from "@/components/sections/WordReveal";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Ticks } from "@/components/ui/Ticks";
-import { ToConfirm } from "@/components/ui/ToConfirm";
 import { CONTACT } from "@/content/pages/other";
 import { HREF } from "@/content/routes";
 import { HOURS, SITE } from "@/content/site";
@@ -35,11 +34,11 @@ export default function ContactPage() {
                 </a>
               </p>
               <p className="small muted">
-                {C.hoursLabel} {HOURS.summary} {HOURS.toConfirm ? <ToConfirm /> : null}
+                {C.hoursLabel} {HOURS.summary}
               </p>
             </div>
             <Ticks items={C.ticks} />
-            <MapPlaceholder label={C.map} className="min-h-[220px]!" />
+            <MapEmbed className="min-h-[260px]!" />
           </div>
           <div className="panel p-[clamp(20px,3vw,32px)]!">
             <QuoteForm title="" bookingFor={C.bookingFor} />

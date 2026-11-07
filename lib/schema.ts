@@ -1,11 +1,10 @@
 /**
- * JSON-LD helpers (schema.org). Values flagged "to confirm" (hours, rating)
- * are deliberately left out until the client approves them.
+ * JSON-LD helpers (schema.org). Values come from content/site.ts (livejunkfree.ca).
  */
 import { plain } from "@/components/ui/Rich";
 import type { FaqItem } from "@/content/faqs";
 import { AREAS } from "@/content/locations";
-import { SITE } from "@/content/site";
+import { HOURS, SITE, SOCIAL } from "@/content/site";
 import type { Crumb } from "@/content/types";
 
 const abs = (path: string) => new URL(path, SITE.url).toString();
@@ -20,9 +19,10 @@ export function localBusiness() {
     url: abs("/"),
     telephone: "+1-647-922-5865",
     email: SITE.email,
-    logo: "https://livejunkfree.ca/wp-content/uploads/2024/05/Untitled-design-2.webp",
+    logo: abs("/images/logo.webp"),
     areaServed: AREAS.map((a) => ({ "@type": "City", name: a.name })),
-    // TODO(pre-launch): add openingHoursSpecification and aggregateRating once confirmed.
+    openingHours: HOURS.schema,
+    sameAs: SOCIAL.map((s) => s.href),
   };
 }
 

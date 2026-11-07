@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Crumb, LocationContent } from "@/content/types";
 import { Icon } from "../icons";
 import { PageShell } from "../layout/PageShell";
-import { MapPlaceholder } from "../sections/Areas";
+import { MapEmbed } from "../sections/Areas";
 import { Faq, Sec, SecHead } from "../sections/Blocks";
 import { CtaBand } from "../sections/CtaBand";
 import { Reviews } from "../sections/Reviews";
@@ -34,10 +34,7 @@ export function LocationTemplate({ c, crumbs, path, pending }: { c: LocationCont
               <li key={n}>{n}</li>
             ))}
           </ul>
-          <p className="small muted">
-            <Rich text={c.neighbourhoods.flag} />
-          </p>
-          <MapPlaceholder label="Service area map" />
+          <MapEmbed />
         </div>
       </Sec>
       <Sec variant="white">
@@ -57,7 +54,7 @@ export function LocationTemplate({ c, crumbs, path, pending }: { c: LocationCont
         </div>
       </Sec>
       <Sec>
-        <Reviews context={c.reviewsContext} />
+        <Reviews ids={c.reviews} />
       </Sec>
       <Sec variant="white">
         <Faq list={c.faq} />

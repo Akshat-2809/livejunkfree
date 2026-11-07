@@ -36,8 +36,8 @@ export function RouteIndex({ routes }: { routes: RouteEntry[] }) {
                         <span className="block font-medium">{r.label}</span>
                         <code>{r.href}</code>
                       </span>
-                      <span className={r.status === "designed" ? "status designed" : "status pending"}>
-                        {r.status === "designed" ? "Designed" : "Template preview (content pending)"}
+                      <span className={r.status === "pending" ? "status pending" : "status designed"}>
+                        {r.status === "designed" ? "Designed" : r.status === "content" ? "Real content, new layout" : "Template preview (content pending)"}
                       </span>
                     </Link>
                   </li>

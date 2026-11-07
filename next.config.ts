@@ -8,11 +8,6 @@ const nextConfig: NextConfig = {
     qualities: [55, 75],
     // AVIF first (smaller), WebP fallback.
     formats: ["image/avif", "image/webp"],
-    remotePatterns: [
-      // Stock photos for the client preview. Swap for real LJF job photos before launch.
-      { protocol: "https", hostname: "images.unsplash.com" },
-      { protocol: "https", hostname: "livejunkfree.ca" },
-    ],
   },
   experimental: {
     // Quote form accepts photo uploads (validated to 5 photos / 8 MB total in app/actions/quote.ts).

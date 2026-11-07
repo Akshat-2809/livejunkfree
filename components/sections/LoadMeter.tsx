@@ -2,17 +2,16 @@
 
 import Link from "next/link";
 import { useLayoutEffect, useRef, useState } from "react";
-import { DEFAULT_LOAD, LOADS, LOAD_METER } from "@/content/pricing";
+import { DEFAULT_LOAD, LOADS, LOAD_METER, PRICES } from "@/content/pricing";
 import { HREF } from "@/content/routes";
-import { Rich } from "../ui/Rich";
-import { ToConfirm } from "../ui/ToConfirm";
 
 const CELLS = Array.from({ length: 8 }, (_, i) => i);
 const WHEELS = [90, 300, 448];
 
 /**
  * Signature pricing widget: pick a load size, the truck fills cell by cell,
- * bumps and spins its wheels, and the price/description/examples flip in.
+ * bumps and spins its wheels, and "what usually fits" flips in.
+ * Only the two published prices are shown (from C$125, full truck C$655).
  */
 export function LoadMeter({ compact = false, id }: { compact?: boolean; id?: string }) {
   const [sel, setSel] = useState(DEFAULT_LOAD);
@@ -21,6 +20,7 @@ export function LoadMeter({ compact = false, id }: { compact?: boolean; id?: str
   const tabs = useRef<HTMLDivElement>(null);
   const truck = useRef<SVGSVGElement>(null);
   const L = LOADS[sel];
+  const full = sel === LOADS.length - 1;
 
   // Sliding white pill behind the selected tab.
   useLayoutEffect(() => {
@@ -86,17 +86,12 @@ export function LoadMeter({ compact = false, id }: { compact?: boolean; id?: str
       </div>
       <div className="lm-out stack" aria-live="polite">
         <span className="tag">{LOAD_METER.tag}</span>
-        <div className="price">
-          <span>
-            <span className="flip" key={`p${tick}`}>{L.price}</span>
-          </span>{" "}
-          <small>{LOAD_METER.priceNote}</small> <ToConfirm label={LOAD_METER.priceFlag} />
-        </div>
-        <p className="eq">
+        <p className="eq-big">
           <span className="flip" key={`e${tick}`}>
             {L.k} truck: {L.eq}
           </span>
         </p>
+        <p className="small muted">{LOAD_METER.fitsLabel}</p>
         <ul key={`i${tick}`}>
           {L.items.map((t, j) => (
             <li key={t} className="chip" style={{ "--ci": j } as React.CSSProperties}>
@@ -104,11 +99,17 @@ export function LoadMeter({ compact = false, id }: { compact?: boolean; id?: str
             </li>
           ))}
         </ul>
-        {compact ? null : (
-          <p className="small muted">
-            <Rich text={LOAD_METER.footnote} />
-          </p>
-        )}
+        <div className="lm-prices">
+          <div className={full ? undefined : "on"}>
+            <span className="price">From {PRICES.from}</span>
+            <small>{PRICES.fromLabel}</small>
+          </div>
+          <div className={full ? "on" : undefined}>
+            <span className="price">{PRICES.full}</span>
+            <small>{PRICES.fullLabel}</small>
+          </div>
+        </div>
+        {compact ? null : <p className="small muted">{LOAD_METER.footnote}</p>}
         <div className="btn-row">
           <Link className="btn btn-primary" href={HREF.contact}>
             {LOAD_METER.cta}

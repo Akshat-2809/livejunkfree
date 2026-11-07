@@ -1,9 +1,10 @@
 /**
- * Small layout blocks: section wrapper, section head, steps, pricing table, FAQ.
+ * Small layout blocks: section wrapper, section head, steps, price note, FAQ.
  */
 import type { ReactNode } from "react";
 import { FAQ_DEFAULT_TITLE, type FaqList } from "@/content/faqs";
-import type { PriceTable } from "@/content/pricing";
+import Link from "next/link";
+import { HREF } from "@/content/routes";
 import { SITE } from "@/content/site";
 import type { Step } from "@/content/types";
 import { faqPage } from "@/lib/schema";
@@ -59,31 +60,20 @@ export function Steps({ list }: { list: Step[] }) {
   );
 }
 
-/** Three-column price table. The middle column hides on mobile (as in the design). */
-export function PricingTable({ table, className }: { table: PriceTable; className?: string }) {
+/** Published pricing as a highlighted line, with a quote button. */
+export function PriceNote({ text }: { text: string }) {
   return (
-    <table className={className ? `tbl ${className}` : "tbl"}>
-      <thead>
-        <tr>
-          {table.head.map((h) => (
-            <th key={h} scope="col">
-              {h}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {table.rows.map((r) => (
-          <tr key={r[0]}>
-            {r.map((c, i) => (
-              <td key={i}>
-                <Rich text={c} />
-              </td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <div className="callout stack max-w-[72ch]">
+      <p className="h4">{text}</p>
+      <div className="btn-row">
+        <Link className="btn btn-primary btn-sm" href={HREF.contact}>
+          Get a free quote
+        </Link>
+        <a className="btn btn-ghost btn-sm" href={SITE.tel}>
+          Call {SITE.phone}
+        </a>
+      </div>
+    </div>
   );
 }
 

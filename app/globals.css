@@ -118,9 +118,6 @@
   .tlink{color:var(--orange-dk);font-weight:600;text-decoration:none;border-bottom:1.5px solid currentColor}
   .btn-glass{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);color:#fff;backdrop-filter:blur(10px)}
 
-  /* ---------- "to confirm" flags ---------- */
-  .tbc{display:inline-block;font:600 .68rem/1 var(--body);padding:4px 8px;border:1px dashed #E36414;color:#B4430A;background:#FFF6EF;border-radius:999px;vertical-align:middle;margin-left:6px;letter-spacing:0}
-  body.hide-tbc .tbc{display:none}
 
   /* ---------- review toolbar (preview bar) ---------- */
   .pv{position:relative;z-index:100;background:#0A0F16;color:#9DAAB8;font-size:.84rem}
@@ -206,7 +203,9 @@
   .hero-home{position:relative;margin:-80px clamp(8px,1.2vw,16px) 0;border-radius:0 0 var(--r-xl) var(--r-xl);overflow:hidden;min-height:min(860px,100vh);display:flex;align-items:flex-end;background:#1B2633}
   .hero-home>.bg{position:absolute;inset:0}
   .hero-home>.bg img{width:100%;height:100%;object-fit:cover}
-  .hero-home>.bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,22,33,.35) 0%,rgba(14,22,33,.05) 35%,rgba(14,22,33,.75) 100%)}
+  /* design gradient + a left-side fade so the headline stays legible over the lettered LJF truck */
+  .hero-home>.bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(14,22,33,.6) 0%,rgba(14,22,33,.25) 45%,rgba(14,22,33,0) 70%),linear-gradient(180deg,rgba(14,22,33,.35) 0%,rgba(14,22,33,.05) 35%,rgba(14,22,33,.75) 100%)}
+  @media (max-width:960px){.hero-home>.bg::after{background:linear-gradient(180deg,rgba(14,22,33,.45) 0%,rgba(14,22,33,.35) 40%,rgba(14,22,33,.85) 100%)}}
   .hero-home .wrap{position:relative;width:100%;display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:end;padding-top:160px;padding-bottom:clamp(28px,4vw,56px)}
   .hero-home .d1{color:#fff;max-width:13ch}
   .hero-home .lead{color:rgba(255,255,255,.82)}
@@ -343,6 +342,13 @@
   .lm-out .chip{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.1);color:#fff}
   .lm-out .small.muted{color:#9DAAB8}
   .lm .btn-ghost{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:#fff}
+  /* load meter: published prices only */
+  .lm-out .eq-big{font:700 clamp(1.5rem,2.6vw,2.1rem)/1.1 var(--display);letter-spacing:-.03em;color:#fff}
+  .lm-prices{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .lm-prices>div{padding:14px 16px;border-radius:var(--r-md);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;gap:6px;transition:background .3s,border-color .3s}
+  .lm-prices>div.on{border-color:var(--orange);background:rgba(255,106,19,.14)}
+  .lm-prices .price{font:700 clamp(1.5rem,2.6vw,2.1rem)/1 var(--display);letter-spacing:-.03em;color:#fff}
+  .lm-prices small{font-size:.84rem;color:#C5D0DB;line-height:1.3}
   .chip{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;background:#fff;border:1px solid var(--line);border-radius:999px;font-size:.92rem;color:var(--ink);text-decoration:none;white-space:nowrap}
   .chip svg{width:18px;height:18px;color:var(--orange)}
   a.chip:hover{border-color:var(--ink)}
@@ -426,7 +432,6 @@
   .cta-band .formbox{background:#fff;color:var(--ink);border-radius:var(--r-lg);padding:clamp(22px,3vw,34px);box-shadow:0 30px 60px -20px rgba(120,40,0,.45)}
   .cta-band .formbox .d3,.cta-band .formbox .h4{color:var(--ink)}
   .cta-band .formbox .muted,.cta-band .formbox .form-note{color:var(--muted)!important}
-  .cta-band .tbc{background:#fff}
   @media (max-width:960px){.cta-band .wrap{grid-template-columns:1fr}}
   .callbig{display:inline-block;font:700 clamp(2rem,4vw,3rem)/1 var(--display);letter-spacing:-.035em;color:inherit;text-decoration:none}
   .panel .callbig,.formbox .callbig{color:var(--ink)}
@@ -445,6 +450,18 @@
   .dest>div:first-child b,.dest>div:first-child p{color:#fff}
   .dest>div:first-child p{opacity:.92}
   @media (max-width:960px){.dest{grid-template-columns:1fr 1fr}}
+  /* real counters from livejunkfree.ca */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .stats>div{padding:26px;border-radius:var(--r-lg);background:var(--surface);display:flex;flex-direction:column;gap:6px}
+  .stats b{font:700 clamp(2.2rem,4vw,3.2rem)/1 var(--display);letter-spacing:-.04em;color:var(--ink)}
+  .stats span{font-weight:600;color:var(--muted)}
+  @media (max-width:640px){.stats{grid-template-columns:1fr}}
+  /* blog list */
+  .posts{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .post{display:flex;flex-direction:column;gap:10px;padding:26px;border-radius:var(--r-lg);background:var(--surface);text-decoration:none}
+  .post:hover{background:var(--surface-2)}
+  .post time{font-size:.84rem;color:var(--muted)}
+  @media (max-width:760px){.posts{grid-template-columns:1fr}}
   .tbl{width:100%;border-collapse:separate;border-spacing:0;background:var(--surface);border-radius:var(--r-lg);overflow:hidden;font-size:.98rem}
   .tbl th,.tbl td{padding:18px 22px;text-align:left;border-bottom:1px solid var(--line)}
   .tbl th{font-size:.84rem;font-weight:500;color:var(--muted)}

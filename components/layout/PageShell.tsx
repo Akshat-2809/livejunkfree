@@ -8,7 +8,7 @@ type Props = {
   children: ReactNode;
   /** Estate / sensitive pages: ink primary buttons, dark slate CTA band. */
   calm?: boolean;
-  /** Show the "content pending" banner (template previews and placeholders). */
+  /** Show the "content pending" banner (template previews and pages still being written). */
   pending?: boolean;
   mobileCta?: string;
 };

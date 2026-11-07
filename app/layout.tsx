@@ -37,7 +37,9 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-CA" className={`${display.variable} ${body.variable}`}>
+    // data-scroll-behavior: lets Next.js switch off smooth scrolling during page changes,
+    // so a new page opens at the top instead of animating up from the old position.
+    <html lang="en-CA" data-scroll-behavior="smooth" className={`${display.variable} ${body.variable}`}>
       <body>
         {REVIEW_MODE ? <ReviewBar /> : null}
         {children}

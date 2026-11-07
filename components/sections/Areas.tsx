@@ -2,6 +2,7 @@ import Link from "next/link";
 import { HOME } from "@/content/pages/home";
 import { AREAS, TOP_AREAS } from "@/content/locations";
 import { HREF, city } from "@/content/routes";
+import { MAP_EMBED_URL } from "@/content/site";
 import { Icon } from "../icons";
 
 /** Homepage: top 10 areas + "+16 more" chip + "Not on the list?" card. */
@@ -33,11 +34,18 @@ export function AreasTop() {
   );
 }
 
-/** Generic service-area map placeholder. */
-export function MapPlaceholder({ label, className }: { label: string; className?: string }) {
+/** Live Junk Free's Google Maps listing (the embed from livejunkfree.ca's homepage). */
+export function MapEmbed({ className }: { className?: string }) {
   return (
-    <div className={className ? `mapph ${className}` : "mapph"} role="img" aria-label={label}>
-      <span>{label}</span>
+    <div className={className ? `mapph relative block! overflow-hidden ${className}` : "mapph relative block! overflow-hidden"}>
+      <iframe
+        src={MAP_EMBED_URL}
+        title="Live Junk Free on Google Maps"
+        className="absolute inset-0 h-full w-full border-0"
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        allowFullScreen
+      />
     </div>
   );
 }

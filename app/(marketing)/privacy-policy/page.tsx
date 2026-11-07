@@ -1,10 +1,10 @@
-import { PlaceholderPage } from "@/components/templates/PlaceholderPage";
-import { PLACEHOLDERS } from "@/content/pages/other";
+import { PendingPage } from "@/components/templates/PendingPage";
+import { PRIVACY } from "@/content/pages/other";
 import { HREF } from "@/content/routes";
 import { pageMeta } from "@/lib/meta";
 
-export const metadata = pageMeta({ title: "Privacy Policy | Live Junk Free", description: PLACEHOLDERS.privacy.lead, path: HREF.privacy });
+export const metadata = pageMeta({ title: "Privacy Policy | Live Junk Free", description: PRIVACY.lead, path: HREF.privacy });
 
 export default function PrivacyPage() {
-  return <PlaceholderPage {...PLACEHOLDERS.privacy} path={HREF.privacy} />;
+  return <PendingPage {...PRIVACY} path={HREF.privacy} />;
 }

@@ -11,9 +11,10 @@ import { Reviews } from "@/components/sections/Reviews";
 import { ServicesBento } from "@/components/sections/ServicesBento";
 import { ItemMarquee, TrustStrip } from "@/components/sections/Strips";
 import { JsonLd } from "@/components/ui/JsonLd";
-import { Rich } from "@/components/ui/Rich";
 import { FAQS } from "@/content/faqs";
 import { HOME } from "@/content/pages/home";
+import { REVIEW_SETS } from "@/content/reviews";
+import { STATS } from "@/content/site";
 import { HREF } from "@/content/routes";
 import { STEPS_STD } from "@/content/shared";
 import { breadcrumbs, localBusiness } from "@/lib/schema";
@@ -38,7 +39,7 @@ export default function HomePage() {
 
       <Sec>
         <SecHead title={HOME.beforeAfter.title} intro={HOME.beforeAfter.intro} />
-        <BeforeAfter before={HOME.beforeAfter.before} after={HOME.beforeAfter.after} cap={HOME.beforeAfter.cap} />
+        <BeforeAfter before={HOME.beforeAfter.before} after={HOME.beforeAfter.after} />
       </Sec>
 
       <Sec>
@@ -56,18 +57,27 @@ export default function HomePage() {
       </Sec>
 
       <Sec>
-        <Reviews />
+        <Reviews ids={REVIEW_SETS.home} />
+      </Sec>
+
+      <Sec variant="tight">
+        <h2 className="d3 mb-6">{HOME.stats.title}</h2>
+        <div className="stats">
+          {STATS.map((st) => (
+            <div key={st.label}>
+              <b>{st.value}</b>
+              <span>{st.label}</span>
+            </div>
+          ))}
+        </div>
       </Sec>
 
       <Sec>
         <SecHead title={d.title} intro={d.intro} />
         <div className="dest">
           <div>
-            <b>{d.stat.value}</b>
-            <span className="lab">{d.stat.label}</span>
-            <p>
-              <Rich text={d.stat.note} />
-            </p>
+            <b className="text-[clamp(1.8rem,2.6vw,2.4rem)]! leading-[1.05]!">{d.lead.title}</b>
+            <p className="mt-auto">{d.lead.text}</p>
           </div>
           {d.items.map((i) => (
             <div key={i.label}>

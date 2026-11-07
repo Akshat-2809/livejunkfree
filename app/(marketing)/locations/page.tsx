@@ -1,5 +1,5 @@
 import { PageShell } from "@/components/layout/PageShell";
-import { MapPlaceholder } from "@/components/sections/Areas";
+import { MapEmbed } from "@/components/sections/Areas";
 import { Sec } from "@/components/sections/Blocks";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { LocationsFinder } from "@/components/sections/RegionList";
@@ -20,7 +20,7 @@ export default function LocationsPage() {
     <PageShell>
       <LocationsFinder path={HREF.locations} />
       <Sec wrapClassName={`grid g2 items-center ${GAP}`}>
-        <MapPlaceholder label={LOCATIONS_INDEX.map} className="min-h-[360px]!" />
+        <MapEmbed className="min-h-[360px]!" />
         <div className="stack">
           <h2 className="d2">{o.title}</h2>
           <p className="muted">

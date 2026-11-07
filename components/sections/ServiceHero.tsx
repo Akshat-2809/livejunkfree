@@ -8,7 +8,6 @@ import { Photo } from "../ui/Photo";
 import { Rating } from "../ui/Rating";
 import { Rich } from "../ui/Rich";
 import { Ticks } from "../ui/Ticks";
-import { ToConfirm } from "../ui/ToConfirm";
 import { WordReveal } from "./WordReveal";
 
 /** Text-left / image-right hero shared by every service and location template. */
@@ -39,7 +38,7 @@ export function ServiceHero({ hero, crumbs, path }: { hero: HeroContent; crumbs:
           <Rating />
           {callout ? (
             <div className="callout small">
-              <b>{callout.title}</b> <ToConfirm label={callout.flag} />
+              <b>{callout.title}</b>
               <br />
               <span className="muted">{callout.note}</span>
             </div>
