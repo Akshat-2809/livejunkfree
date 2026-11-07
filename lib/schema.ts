@@ -17,7 +17,7 @@ export function localBusiness() {
     name: SITE.name,
     description: SITE.tagline,
     url: abs("/"),
-    telephone: "+1-647-922-5865",
+    telephone: SITE.phoneE164,
     email: SITE.email,
     logo: abs("/images/logo.webp"),
     areaServed: AREAS.map((a) => ({ "@type": "City", name: a.name })),
@@ -34,7 +34,7 @@ export function service(name: string, description: string, path: string) {
     description: plain(description),
     url: abs(path),
     serviceType: name,
-    provider: { "@id": abs("/#business"), "@type": "LocalBusiness", name: SITE.name, telephone: "+1-647-922-5865" },
+    provider: { "@id": abs("/#business"), "@type": "LocalBusiness", name: SITE.name, telephone: SITE.phoneE164 },
     areaServed: { "@type": "Place", name: "Toronto and the Greater Toronto Area" },
   };
 }

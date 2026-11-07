@@ -7,7 +7,10 @@ export const SITE = {
   name: "Live Junk Free",
   url: "https://livejunkfree.ca",
   tagline: "Junk removal, cleanouts and small demolition across Toronto and the GTA.",
-  phone: "647-922-5865",
+  /** Shown on the page. Same format as livejunkfree.ca ("+1 647 922 5865"). */
+  phone: "+1 647 922 5865",
+  /** E.164, for schema.org. */
+  phoneE164: "+16479225865",
   tel: "tel:+16479225865",
   email: "info@livejunkfree.ca",
   copyright: "© 2026 Live Junk Free. Serving Toronto and the GTA.",

@@ -67,7 +67,7 @@ export const HOW_IT_WORKS = {
 export const CONTACT = {
   meta: {
     title: "Get a Free Junk Removal Quote | Live Junk Free",
-    description: "Tell us what needs to go and get a free, no-obligation quote. Call or text 647-922-5865, 7 days a week, 6AM–11PM.",
+    description: "Tell us what needs to go and get a free, no-obligation quote. Call or text +1 647 922 5865, 7 days a week, 6AM–11PM.",
   },
   crumb: "Get a quote",
   h1: "Get a free quote",
